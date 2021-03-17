@@ -3,13 +3,16 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
 
-const SearchForm = () => {
+interface Props {
+  setSearchQuery(searchQuery: string): void
+}
+
+const SearchForm: React.FC<Props> = ({ setSearchQuery }: Props) => {
   const {
     register, handleSubmit, errors,
   } = useForm();
 
-  // eslint-disable-next-line no-console
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: { searchQuery: string }) => setSearchQuery(data.searchQuery);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
