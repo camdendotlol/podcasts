@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -15,10 +16,14 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
   plugins: [
     'react',
     '@typescript-eslint',
+  ],
+  ignorePatterns: [
+    '.eslintrc.js'
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
@@ -27,6 +32,8 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'import/extensions': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
   },
   settings: {
     'import/resolver': {

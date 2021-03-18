@@ -37,3 +37,8 @@ export interface iTunesResponse {
   resultCount: number,
   results: Array<podcastMetadata>
 }
+
+export enum Tabs {
+  UserSubscriptions,
+  PodcastDirectory,
+}

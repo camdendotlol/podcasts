@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
 import { podcastMetadata, iTunesResponse } from '../../types';
 
 interface Props {
@@ -15,19 +16,29 @@ const SearchResults: React.FC<Props> = ({ searchQuery }: Props) => {
   useEffect(() => {
     // Don't spam Apple's servers if the user hasn't entered a query yet
     if (searchQuery !== '') {
-      const querySearch = async () => {
+      const querySearch = async (): Promise<void> => {
         const searchUrl = `https://itunes.apple.com/search?term=${searchQuery}&country=US&media=podcast&limit=50`;
         const response = await axios.get<iTunesResponse>(searchUrl);
-        setResults(response.data.results);
+        return setResults(response.data.results);
       };
-      querySearch();
+      // The @typescript-eslint/no-floating-promises rule demands this wacky construction.
+      // Not sure how we are supposed to "handle" the promise, though it might be good to
+      // give an error if the user is offline or iTunes is down
+      querySearch().then(() => null).catch(() => null);
     }
   }, [searchQuery]);
 
+  const shortenTitle = (title: string): string => {
+    if (title.length < 20) {
+      return title;
+    }
+    return `${title.slice(0, 20)}...`;
+  };
+
   const podcastInfo = (podcast: podcastMetadata) => (
-    <div>
+    <div className="podcast-thumbnail" key={podcast.collectionId}>
       <img src={podcast.artworkUrl100} alt="" />
-      <p>{podcast.collectionName}</p>
+      <p>{shortenTitle(podcast.collectionName)}</p>
     </div>
   );
 
@@ -35,7 +46,9 @@ const SearchResults: React.FC<Props> = ({ searchQuery }: Props) => {
     <div>
       {/* results will be undefined on first render, so avoid returning anything until
       querySearch has done its thing */}
-      { results ? results.map((r) => podcastInfo(r)) : null }
+      <Container className="podcast-thumbnail-grid">
+        { results ? results.map((r) => podcastInfo(r)) : null }
+      </Container>
     </div>
   );
 };
