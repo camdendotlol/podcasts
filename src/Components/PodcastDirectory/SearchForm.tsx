@@ -25,7 +25,7 @@ const SearchForm: React.FC<Props> = ({ setSearchQuery }: Props) => {
         <Form.Control name="searchQuery" ref={register} type="search" placeholder="Search" />
         { errors.searchQuery }
       </Form.Group>
-      <Button variant="primary" type="submit">Search</Button>
+      <Button variant="outline-primary" type="submit">Search</Button>
     </Form>
   );
 };

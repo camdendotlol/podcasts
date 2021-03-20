@@ -9,3 +9,5 @@ The title, repo name, and URL will change once a proper name is selected.
 Notes for development:
 
 [React Player npm package for audio](https://www.npmjs.com/package/react-player)
+
+[Howler](https://www.npmjs.com/package/howler) might be better

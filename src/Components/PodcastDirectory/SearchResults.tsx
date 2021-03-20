@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container';
 import { podcastMetadata, iTunesResponse } from '../../types';
 
 interface Props {
@@ -21,6 +20,7 @@ const SearchResults: React.FC<Props> = ({ searchQuery }: Props) => {
         const response = await axios.get<iTunesResponse>(searchUrl);
         return setResults(response.data.results);
       };
+
       // The @typescript-eslint/no-floating-promises rule demands this wacky construction.
       // Not sure how we are supposed to "handle" the promise, though it might be good to
       // give an error if the user is offline or iTunes is down
@@ -39,16 +39,17 @@ const SearchResults: React.FC<Props> = ({ searchQuery }: Props) => {
     <div className="podcast-thumbnail" key={podcast.collectionId}>
       <img src={podcast.artworkUrl100} alt="" />
       <p>{shortenTitle(podcast.collectionName)}</p>
+      <a href={podcast.feedUrl}>{podcast.feedUrl}</a>
     </div>
   );
 
   return (
     <div>
-      {/* results will be undefined on first render, so avoid returning anything until
-      querySearch has done its thing */}
-      <Container className="podcast-thumbnail-grid">
+      {/* results will be undefined on first render, so avoid
+      returning anything until querySearch has done its thing */}
+      <div className="podcast-thumbnail-grid">
         { results ? results.map((r) => podcastInfo(r)) : null }
-      </Container>
+      </div>
     </div>
   );
 };
