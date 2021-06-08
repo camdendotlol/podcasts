@@ -41,4 +41,5 @@ export interface iTunesResponse {
 export enum Tab {
   UserSubscriptions,
   PodcastDirectory,
+  PodcastDetails,
 }

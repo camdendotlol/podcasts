@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tabReducer from './reducers/tabReducer';
+import podcastDetailReducer from './reducers/podcastDetailReducer';
 
 export const store = configureStore({
   reducer: {
     tabStore: tabReducer,
+    podcastDetailStore: podcastDetailReducer,
   },
 });
 
