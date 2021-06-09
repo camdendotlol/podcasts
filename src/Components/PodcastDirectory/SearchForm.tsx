@@ -12,14 +12,15 @@ type FormData = {
 }
 
 const SearchForm: React.FC<Props> = ({ setSearchQuery }: Props) => {
-  const { register, handleSubmit, errors } = useForm<FormData>();
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
   const onSubmit = (data: { searchQuery: string }) => setSearchQuery(data.searchQuery);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group controlId="formSearch">
-        <Form.Control name="searchQuery" ref={register} type="search" placeholder="Search" />
+        <Form.Control {...register('searchQuery')} type="search" placeholder="Search" />
         { errors.searchQuery }
       </Form.Group>
       <Button variant="outline-primary" type="submit">Search</Button>
