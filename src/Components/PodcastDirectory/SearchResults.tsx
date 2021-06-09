@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { podcastMetadata, iTunesResponse, Tab } from '../../types';
@@ -29,10 +27,7 @@ const SearchResults: React.FC<Props> = ({ searchQuery }: Props) => {
         return setResults(response.data.results);
       };
 
-      // The @typescript-eslint/no-floating-promises rule demands this wacky construction.
-      // Not sure how we are supposed to "handle" the promise, though it might be good to
-      // give an error if the user is offline or iTunes is down
-      querySearch().then(() => null).catch(() => null);
+      void querySearch();
     }
   }, [searchQuery]);
 
@@ -49,11 +44,10 @@ const SearchResults: React.FC<Props> = ({ searchQuery }: Props) => {
   };
 
   const podcastInfo = (podcast: podcastMetadata) => (
-    <div className="podcast-thumbnail" key={podcast.collectionId} onClick={() => openEpisodeDetails(podcast)}>
+    <figure className="podcast-thumbnail" key={podcast.collectionId} onClick={() => openEpisodeDetails(podcast)}>
       <img src={podcast.artworkUrl100} alt="" />
-      <p>{shortenTitle(podcast.collectionName)}</p>
-      <a href={podcast.feedUrl}>{podcast.feedUrl}</a>
-    </div>
+      <figcaption>{shortenTitle(podcast.collectionName)}</figcaption>
+    </figure>
   );
 
   return (

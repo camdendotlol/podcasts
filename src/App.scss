@@ -2,12 +2,13 @@
 
 // Customizations to the default Bootstrap CSS go here
 
-p, h1, h2, h3, h4, a {
+body {
+  background: #2A2C30;
   color: white !important;
 }
 
-body {
-  background: #2A2C30;
+.navbar * {
+  color: white !important;
 }
 
 .navbar-brand {
@@ -62,13 +63,22 @@ body {
 .podcast-thumbnail-grid {
   margin-top: 40px;
   text-align: center;
-  display: grid;
-  // TODO: set up breakpoints for number of columns
-  // or maybe switch to flexbox
-  grid-template-columns: auto auto auto auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
 }
 
-.podcast-thumbnail {
+.podcast-thumbnail img {
   width: 200px;
   height: 200px;
+}
+
+.podcast-thumbnail img {
+  transition: transform 0.2s;
+}
+
+.podcast-thumbnail:hover img {
+  transform: scale(105%);
+  cursor: pointer;
 }

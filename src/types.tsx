@@ -43,3 +43,19 @@ export enum Tab {
   PodcastDirectory,
   PodcastDetails,
 }
+
+export interface RSSData {
+  content?: string | undefined,
+  contentSnippet?: string | undefined,
+  enclosure?: {
+    length?: number | undefined,
+    type?: string | undefined,
+    url: string
+  } | undefined,
+  guid?: string | undefined,
+  isoDate?: string | undefined,
+  // pubDate might be parseable as a Date object
+  // unsure because it seems to be in a weird format
+  pubDate?: string | undefined,
+  title?: string | undefined
+}

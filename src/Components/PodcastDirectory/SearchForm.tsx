@@ -12,9 +12,6 @@ type FormData = {
 }
 
 const SearchForm: React.FC<Props> = ({ setSearchQuery }: Props) => {
-  // TODO: remove the below eslint exception once react-hook-form v7 comes out
-  // see https://github.com/react-hook-form/react-hook-form/issues/2887#issuecomment-767142861
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { register, handleSubmit, errors } = useForm<FormData>();
 
   const onSubmit = (data: { searchQuery: string }) => setSearchQuery(data.searchQuery);
