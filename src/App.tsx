@@ -32,7 +32,9 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      { handleCurrentTab() }
+      <div className='container'>
+        { handleCurrentTab() }
+      </div>
       <MediaBar />
     </>
   );

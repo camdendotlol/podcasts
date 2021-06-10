@@ -6,7 +6,7 @@ interface Props {
 }
 
 const EpisodeItem: React.FC<Props> = ({ episodeDetails }) => (
-    <li>
+    <li className='episode-list-item'>
       {episodeDetails.title}
     </li>
 );

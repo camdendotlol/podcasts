@@ -2,9 +2,19 @@
 
 // Customizations to the default Bootstrap CSS go here
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background: #2A2C30;
   color: white !important;
+}
+
+.container {
+  margin-top: 4rem;
+  margin-bottom: 120px;
+  width: 80%;
 }
 
 .navbar * {
@@ -27,6 +37,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 40px;
+  height: 100px;
 }
 
 .play-button {
@@ -58,6 +69,7 @@ body {
 .directory {
   margin-top: 40px;
   margin-bottom: 120px;
+  width: 100%;
 }
 
 .podcast-thumbnail-grid {
@@ -80,5 +92,55 @@ body {
 
 .podcast-thumbnail:hover img {
   transform: scale(105%);
+  -webkit-transform: scale(105%);
   cursor: pointer;
+}
+
+.details-view h1, .details-view h2, .details-view h3, .details-view h4 {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.details-view-artwork {
+  margin: 0 auto;
+  display: block;
+  width: 20rem;
+  height: 20rem;
+}
+
+.episode-list {
+  margin: 0 auto;
+  list-style-type: none;
+}
+
+.episode-list-item {
+  background: black;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  transition: color 0.2s;
+}
+
+.episode-list-item:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.show-all-episodes-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .episode-list {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+  }
 }
