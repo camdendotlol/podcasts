@@ -3,6 +3,7 @@ import Parser from 'rss-parser';
 import { useAppSelector } from '../../hooks';
 import CORS_PROXY_URL from '../../config';
 import { RSSData } from '../../types'
+import EpisodeItem from './EpisodeItem';
 
 const PodcastDetails: React.FC = () => {
   const [episodes, setEpisodes] = useState<RSSData[]>([]);
@@ -19,8 +20,6 @@ const PodcastDetails: React.FC = () => {
       throw new Error(e);
     }
   };
-
-  console.log(episodes)
 
   useEffect(() => {
     const getInfo = async () => {
@@ -41,7 +40,12 @@ const PodcastDetails: React.FC = () => {
     <div>
       <p>{currentPodcast.artistName}</p>
       <ul>
-        {episodes.map((e: RSSData) => <li key={e.guid}>{e.title}</li>)}
+        {episodes.map((e: RSSData) =>
+          <EpisodeItem
+            key={e.guid}
+            episodeDetails={e}
+          />
+        )}
       </ul>
     </div>
   );
