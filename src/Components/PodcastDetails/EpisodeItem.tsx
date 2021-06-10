@@ -1,5 +1,5 @@
 import React from 'react';
-import { RSSData } from '../../types'
+import { RSSData } from '../../types';
 
 interface Props {
   episodeDetails: RSSData

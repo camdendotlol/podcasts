@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Parser from 'rss-parser';
 import { useAppSelector } from '../../hooks';
 import CORS_PROXY_URL from '../../config';
-import { RSSData } from '../../types'
+import { RSSData } from '../../types';
 import EpisodeItem from './EpisodeItem';
 
 const PodcastDetails: React.FC = () => {
